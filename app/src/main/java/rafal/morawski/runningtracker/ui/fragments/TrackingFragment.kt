@@ -17,6 +17,7 @@ import rafal.morawski.runningtracker.other.Constants.ACTION_START_OR_RESUME_SERV
 import rafal.morawski.runningtracker.other.Constants.MAP_ZOOM
 import rafal.morawski.runningtracker.other.Constants.POLYLINE_COLOR
 import rafal.morawski.runningtracker.other.Constants.POLYLINE_WIDTH
+import rafal.morawski.runningtracker.other.TrackingUtility
 import rafal.morawski.runningtracker.services.Polyline
 import rafal.morawski.runningtracker.services.TrackingService
 import rafal.morawski.runningtracker.ui.viewmodels.MainViewModel
@@ -30,6 +31,7 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
     private var pathPoints = mutableListOf<Polyline>()
 
     private var map: GoogleMap? = null
+    private var currTimeInMillis = 0L
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,6 +58,12 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
             pathPoints = it
             addLatestPolyline()
             moveCameraToUser()
+        })
+
+        TrackingService.timeRunInMillis.observe(viewLifecycleOwner, Observer {
+            currTimeInMillis = it
+            val formattedTime = TrackingUtility.getFormattedStopWatchTime(currTimeInMillis, true)
+            tvTimer.text = formattedTime
         })
     }
 
