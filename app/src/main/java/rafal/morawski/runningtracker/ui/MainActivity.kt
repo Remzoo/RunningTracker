@@ -1,10 +1,10 @@
-package rafal.morawski.runningtracker
+package rafal.morawski.runningtracker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.room.Dao
 import dagger.hilt.android.AndroidEntryPoint
+import rafal.morawski.runningtracker.R
 import rafal.morawski.runningtracker.db.RunDAO
 import javax.inject.Inject
 
