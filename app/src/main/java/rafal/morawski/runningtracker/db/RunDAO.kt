@@ -1,4 +1,4 @@
-package rafal.morawski.runningtracker
+package rafal.morawski.runningtracker.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
